@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+  <h2>Login</h2>
+  <form id="loginForm">
+    <label>Username
+      <input type="text" name="username" value="admin" required />
+    </label>
+    <label>Password
+      <input type="password" name="password" value="password" required />
+    </label>
+    <button type="submit">Login</button>
+  </form>
+  <div id="loginMsg"></div>
+</div>
+<script>
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(e.target).entries());
+  const res = await fetch("/login", {method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify(data)});
+  const j = await res.json();
+  const msg = document.getElementById("loginMsg");
+  if (res.ok && j.redirect) {
+    msg.textContent = "Logged in! Redirecting...";
+    location.href = j.redirect;
+  } else {
+    msg.textContent = j.error || "Login failed";
+  }
+});
+</script>
+{% endblock %}

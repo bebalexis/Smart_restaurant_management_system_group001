@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="grid">
+  <a class="btn" href="#menu">Menu</a>
+  <a class="btn" href="#tables">Tables</a>
+  <a class="btn" href="#reservations">Reservations</a>
+  <a class="btn" href="#orders">Orders</a>
+  <a class="btn" href="#billing">Billing</a>
+  <a class="btn" href="#reports">Sales Reports</a>
+  <a class="btn" href="#events">Live Events</a>
+  <button class="btn outline" id="logoutBtn">Logout</button>
+</div>
+
+<section id="menu" class="card">
+  <h2>Menu <button class="small" id="refreshMenu">Refresh</button></h2>
+  <form id="addMenuForm">
+    <input name="name" placeholder="Name" required />
+    <input name="price" type="number" step="0.01" placeholder="Price" required />
+    <input name="category" placeholder="Category" />
+    <button type="submit">Add</button>
+  </form>
+  <pre id="menuOut"></pre>
+</section>
+
+<section class="card">
+  <h3>Menu (Update/Delete)</h3>
+  <form id="updateMenuForm">
+    <input name="id" type="number" placeholder="Item ID" required />
+    <input name="name" placeholder="Name" />
+    <input name="price" type="number" step="0.01" placeholder="Price" />
+    <input name="category" placeholder="Category" />
+    <input name="available" placeholder="Available (true/false)" />
+    <button type="submit">Update</button>
+  </form>
+  <form id="deleteMenuForm">
+    <input name="id" type="number" placeholder="Item ID" required />
+    <button type="submit">Delete</button>
+  </form>
+</section>
+
+<section id="tables" class="card">
+  <h2>Tables <button class="small" id="refreshTables">Refresh</button></h2>
+  <form id="addTableForm">
+    <input name="label" placeholder="Label (e.g., T4)" required />
+    <input name="capacity" type="number" placeholder="Capacity" />
+    <button type="submit">Add</button>
+  </form>
+  <pre id="tablesOut"></pre>
+</section>
+
+<section class="card">
+  <h3>Tables (Update/Delete)</h3>
+  <form id="updateTableForm">
+    <input name="id" type="number" placeholder="Table ID" required />
+    <input name="label" placeholder="Label" />
+    <input name="capacity" type="number" placeholder="Capacity" />
+    <input name="occupied" placeholder="Occupied (true/false)" />
+    <button type="submit">Update</button>
+  </form>
+  <form id="deleteTableForm">
+    <input name="id" type="number" placeholder="Table ID" required />
+    <button type="submit">Delete</button>
+  </form>
+</section>
+
+<section id="reservations" class="card">
+  <h2>Reservations <button class="small" id="refreshReservations">Refresh</button></h2>
+  <form id="addReservationForm">
+    <input name="name" placeholder="Name" required />
+    <input name="phone" placeholder="Phone" required />
+    <input name="size" type="number" placeholder="Size" required />
+    <input name="time" type="datetime-local" />
+    <input name="table_id" type="number" placeholder="Table ID (optional)" />
+    <button type="submit">Create</button>
+  </form>
+  <pre id="reservationsOut"></pre>
+</section>
+
+<section class="card">
+  <h3>Reservations (Update/Delete)</h3>
+  <form id="updateReservationForm">
+    <input name="id" type="number" placeholder="Reservation ID" required />
+    <input name="name" placeholder="Name" />
+    <input name="phone" placeholder="Phone" />
+    <input name="size" type="number" placeholder="Size" />
+    <input name="time" type="datetime-local" />
+    <input name="table_id" type="number" placeholder="Table ID" />
+    <button type="submit">Update</button>
+  </form>
+  <form id="deleteReservationForm">
+    <input name="id" type="number" placeholder="Reservation ID" required />
+    <button type="submit">Delete</button>
+  </form>
+</section>
+
+<section id="orders" class="card">
+  <h2>Orders <button class="small" id="refreshOrders">Refresh</button></h2>
+  <form id="addOrderForm">
+    <input name="table_id" type="number" placeholder="Table ID (optional)" />
+    <textarea name="items" placeholder='Items JSON (e.g., [{"menu_item_id":1,"quantity":2}] or [{"name":"Water","price":1.0,"quantity":1}]'></textarea>
+    <button type="submit">Create Order</button>
+  </form>
+  <pre id="ordersOut"></pre>
+</section>
+
+<section id="billing" class="card">
+  <h2>Billing</h2>
+  <form id="payOrderForm">
+    <input name="order_id" type="number" placeholder="Order ID" required />
+    <input name="amount" type="number" step="0.01" placeholder="Amount (default = total)" />
+    <input name="method" placeholder="Method (cash/card)" />
+    <button type="submit">Pay</button>
+  </form>
+  <pre id="billingOut"></pre>
+</section>
+
+<section id="reports" class="card">
+  <h2>Sales Reports <button class="small" id="refreshReports">Refresh</button></h2>
+  <pre id="reportsOut"></pre>
+</section>
+
+<section id="events" class="card">
+  <h2>Live Events</h2>
+  <pre id="eventsOut"></pre>
+</section>
+{% endblock %}
