@@ -6,4 +6,3 @@ python-engineio==4.9.1
 eventlet==0.36.1
 Werkzeug==3.0.3
 gunicorn
-python-3.11.8
